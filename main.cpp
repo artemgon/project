@@ -2,11 +2,12 @@
 
 int main()
 {
-	const int size = 5;
-	int array[size] = { 5, 7, 2, 4, 6 }, *ptr = array,
-	sum = 0, product = 1;
-	myFunc(array, size, &sum, &product);
-	cout << "Sum: " << sum << endl;
-	cout << "Product: " << product << endl;
+	const int size = 6;
+	int array[size] = { 5, -7, 2, -4, 0 , 0}, *ptr = array,
+	p = 0, n = 0, z = 0;
+	myFunc(array, size, &p, &n, &z);
+	cout << "Positive: " << p << endl;
+	cout << "Negative: " << n << endl;
+	cout << "Zeros: " << z << endl;
 	return 0;
 }
