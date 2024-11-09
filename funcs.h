@@ -1,16 +1,25 @@
 #include "libs.h" 
 
 template<class T>
-void myFunc(T* ptr, int size, int*p, int* n, int* z)
+void myFunc(T* ptr_1, int size_1, T* ptr_2, int size_2, int *index)
 {
-	for (int i = 0; i < size; i++)
+	int counter = 0;
+	for (int i = 0; i < size_2; i++)
 	{
-		if (*(ptr + i) > 0)
-			*p += 1;
-		else if (*(ptr + i) < 0)
-			*n += 1;
-		else
-			*z += 1;
+		for (int j = 0; j < size_1; j++)
+		{
+			if (*(ptr_2 + i) == *(ptr_1 + j))
+			{
+				if (i == 0)
+				{
+					*index = j;
+				}
+				counter++;
+			}
+		}
 	}
-	return;
+	if (counter != size_2)
+	{
+		*index = 0;
+	}
 }

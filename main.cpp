@@ -2,12 +2,10 @@
 
 int main()
 {
-	const int size = 6;
-	int array[size] = { 5, -7, 2, -4, 0 , 0}, *ptr = array,
-	p = 0, n = 0, z = 0;
-	myFunc(array, size, &p, &n, &z);
-	cout << "Positive: " << p << endl;
-	cout << "Negative: " << n << endl;
-	cout << "Zeros: " << z << endl;
+	const int size_1 = 6, size_2 = 3;
+	int A[size_1] = { 5, -7, 2, -4, 0 , 0 }, * ptr_1 = A,
+		B[size_2] = { -7, 2, -4 }, * ptr_2 = B, index;
+	myFunc(A, size_1, B, size_2, &index);
+	cout << "Index: " << index << endl;
 	return 0;
 }
