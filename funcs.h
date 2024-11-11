@@ -11,33 +11,14 @@ void fillArr(T* ptr, int size)
 	return;
 }
 
-template<typename T>
-void addPlace(T* ptr, int &size, int index)
-{
-	size++;
-	for (int i = size - 1; i > index; i--)
-	{
-		if (i - 1 == index)
-		{
-			*(ptr + i) = *(ptr + i - 1);
-			break;
-		}
-		*(ptr + i) = *(ptr + i - 1);
-	}
-	return;
-}
-
 template<class T>
-void myFunc(T* ptr_1, int &size_1, T* ptr_2, int size_2, int index)
+void removeElem(T* ptr, int &size_1, int index, int size_2)
 {
-	for (int i = 0; i < size_2; i++)
+	for (int i = index; i < size_1 - 1; i++)
 	{
-		addPlace(ptr_1, size_1, index);
+		*(ptr + i) = *(ptr + i + 1);
 	}
-	for (int i = index, j = 0; i < size_2 + index && j < size_2; i++, j++)
-	{	
-		*(ptr_1 + i) = *(ptr_2 + j);
-	}
+	size_1--;
 	return;
 }
 
@@ -50,3 +31,16 @@ void printFunc(T* ptr, int size)
 	}
 	return;
 }
+
+template<class T>
+void myFunc(T* ptr, int &size_1, int size_2, int index)
+{
+	int counter = 0;
+	while (counter < size_2)
+	{
+		removeElem(ptr, size_1, index, size_2);
+		counter++;
+	}
+	return;
+}
+
