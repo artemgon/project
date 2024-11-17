@@ -1,14 +1,12 @@
 #include "libs.h" 
 
 template<typename T>
-void initFunc(T* ptr, int size)
+void initFunc(T array[], int size)
 {
 	for (int i = 0; i < size; i++)
 	{
-		cin >> *ptr;
-		++ptr;
+		cin >> array[i];
 	}
-	return;
 }
 
 template<typename T>
@@ -19,42 +17,37 @@ void printFunc(T* ptr, int size)
 		cout << *ptr << " ";
 		++ptr;
 	}
-	return;
+	cout << endl;
 }
 
 template<typename T>
-bool checkFunc(T elem)
+void myFunc(T array[], int size_1, int& size_p, int& size_n, int& size_z, T*& p, T*& n, T*& z)
 {
-    if (elem < 2) return false; 
-    for (T i = 2; i * i <= elem; ++i) {
-        if (elem % i == 0) return false;
-    }
-    return true;
-}
-
-template<typename T>
-T* deleteElem(T *ptr, int& size, int index) {
-    T* ptr_1 = new T[size - 1];
-    for (int i = 0, j = 0; i < size; ++i) {
-        if (i != index) { 
-            ptr_1[j++] = ptr[i];
-        }
-    }
-    --size;
-    delete[] ptr;
-    return ptr_1;
-}
-
-
-template<typename T>
-void myFunc(T* &ptr, int& size)
-{
-    for (int i = 0; i < size; ) { 
-        if (checkFunc(*(ptr + i))) { 
-            ptr = deleteElem(ptr, size, i); 
-        }
-        else {
-            ++i;
-        }
-    }
+	size_p = size_n = size_z = 0;
+	for (int i = 0; i < size_1; i++) {
+		if (array[i] > 0) size_p++;
+		else if (array[i] < 0) size_n++;
+		else size_z++;
+	}
+	p = new T[size_p];
+	n = new T[size_n];
+	z = new T[size_z];
+	int c_p = 0, c_n = 0, c_z = 0;
+	for (int i = 0; i < size_1; i++) {
+		if (array[i] > 0)
+		{
+			*(p + c_p) = array[i];
+			c_p++;
+		}
+		else if (array[i] < 0)
+		{
+			*(n + c_n) = array[i];
+			c_n++;
+		}
+		else
+		{
+			*(z + c_z) = array[i];
+			c_z++;
+		}
+	}
 }
